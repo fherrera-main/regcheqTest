@@ -1,11 +1,13 @@
 <template>
   <div>
+    <b-input>
+
+    </b-input>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import { BRow, BCol } from 'bootstrap-vue'
+import { Component, Vue } from 'nuxt-property-decorator'
 
 @Component
 export default class Button extends Vue {}

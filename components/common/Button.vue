@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="handleClick" type="button" class="btn btn-primary btn-block" :disabled="loading">
+    <button type="submit" class="btn btn-primary btn-block" :disabled="loading">
       <span v-if="!loading">
         {{ text }}
       </span>
@@ -12,12 +12,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator'
+import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
 @Component
 export default class Button extends Vue {
-  @Prop({ type: String, default: 'Default text', required: true })
-  readonly text!: string
+  @Prop({ type: String, default: 'Default text', required: true }) readonly text!: string
   @Prop({ type: Boolean, default: false }) readonly loading!: boolean;
   @Prop(Function) readonly handleClick! : () => void;
 }

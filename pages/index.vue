@@ -5,11 +5,14 @@
 </template>
 
 <script lang="ts">
-  import { Component, Vue } from 'vue-property-decorator';
+  import { Component, Vue } from 'nuxt-property-decorator';
+import { nextTick } from 'vue';
 
   @Component
   export default class Home extends Vue {
-    
+    beforeCreate() {
+      this.$router.push("/productos") 
+    }
   }
 </script>
 

@@ -10,7 +10,7 @@
               alt=""
             />
             <div class="card-body py-4 mt-4 px-md-5">
-              <form>
+              <form @submit.prevent="handleSubmit">
                 <div class="form-outline mb-4 text-left">
                   <label class="form-label" for="email">Correo</label>
                   <input
@@ -29,11 +29,7 @@
                     v-model="password"
                   />
                 </div>
-                <Button
-                  :handleClick="handleSubmit"
-                  :text="'Iniciar sesión'"
-                  :loading="loading"
-                ></Button>
+                <Button :text="'Iniciar sesión'" :loading="loading"></Button>
               </form>
             </div>
           </div>
@@ -44,7 +40,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator'
 import Button from '@/components/common/Button.vue'
 import axios from '@nuxtjs/axios'
 
@@ -58,13 +54,13 @@ export default class Login extends Vue {
   password: string = ''
   loading: boolean = false
   async handleSubmit() {
-    const data = { email: this.email, password :this.password }
+    const data = { email: this.email, password: this.password }
     try {
-        this.loading = true;
-        const response = await this.$auth.loginWith('local', { data });
+      this.loading = true
+      const response = await this.$auth.loginWith('local', { data }).then(() => this.loading = false)
+      
     } catch (error) {
-        console.log(error)
-        this.loading = true;
+      this.loading = false
     }
   }
 }
